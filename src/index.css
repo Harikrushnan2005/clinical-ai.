@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 220 20% 7%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 174 72% 46%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 16% 16%;
+    --secondary-foreground: 210 20% 82%;
+
+    --muted: 220 14% 14%;
+    --muted-foreground: 215 12% 52%;
+
+    --accent: 174 50% 30%;
+    --accent-foreground: 174 72% 90%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
+    --ring: 174 72% 46%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 210 20% 82%;
+    --sidebar-primary: 174 72% 46%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 16% 14%;
+    --sidebar-accent-foreground: 210 20% 82%;
+    --sidebar-border: 220 14% 16%;
+    --sidebar-ring: 174 72% 46%;
+
+    /* Custom tokens */
+    --success: 152 60% 42%;
+    --success-foreground: 152 60% 95%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 10%;
+    --info: 200 80% 50%;
+    --info-foreground: 200 80% 95%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(174 72% 46%), hsl(200 80% 50%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 20% 7%), hsl(220 18% 10%));
+    --gradient-card: linear-gradient(145deg, hsl(220 18% 11%), hsl(220 18% 9%));
+    --gradient-glow: radial-gradient(ellipse at 50% 0%, hsl(174 72% 46% / 0.08), transparent 60%);
+
+    --shadow-glow: 0 0 20px hsl(174 72% 46% / 0.15);
+    --shadow-card: 0 4px 24px hsl(220 20% 4% / 0.5);
+  }
+
+  .dark {
+    /* Same as root since this is a dark-first app */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50;
+  }
+
+  .glow-border {
+    @apply border border-primary/20 shadow-[0_0_15px_hsl(174_72%_46%/0.1)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 5px hsl(174 72% 46% / 0.2); }
+    50% { box-shadow: 0 0 20px hsl(174 72% 46% / 0.4); }
+  }
+
+  .status-pending { @apply text-warning; }
+  .status-processing { @apply text-info; }
+  .status-completed { @apply text-success; }
+  .status-failed { @apply text-destructive; }
+}
